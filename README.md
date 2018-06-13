@@ -13,6 +13,13 @@ $ npm start
 
 ## Getting Started
 
+Add the following import to your page's `<head>`:
+
+```html
+<link rel="import" href="https://unpkg.com/@myuw-web-components/myuw-app-bar@1.0.0/myuw-app-bar.html">
+```
+
+
 Use the component's HTML tag wherever you want:
 
 ```HTML
