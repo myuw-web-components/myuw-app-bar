@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<template id="myuw-app-bar-template">
+    <link href="./myuw-app-bar.css" rel="stylesheet">
+    <div id="myuw-app-bar" class='myuw-app-bar'>
+        <div class='region region__navigation'>
+            <slot name='myuw-navigation' />
+        </div>
+        <div class="title">
+            <h1 id="myuw-app-bar__title"></h1>
+        </div>
+        <div class='region region__help'>
+            <slot name='myuw-help' />
+        </div>
+        <div class='region region__notifications'>
+            <slot name='myuw-notifications' />
+        </div>
+        <div class='region region__profile'>
+            <slot name='myuw-profile' />
+        </div>
+    </div>
+</template>
+<script>
+    class MyuwAppBar extends HTMLElement {
+        constructor() {
+            super();
+            
+            // Get the script document
+            const thisDoc = (document._currentScript || document.currentScript).ownerDocument;
+
+            // Create a shadowroot for this element
+            this.attachShadow({mode: 'open'});
+
+            // Get the template and extract the HTML content
+            const template = thisDoc.getElementById('myuw-app-bar-template');
+
+            // Append the custom HTML to the shadowroot
+            this.shadowRoot.appendChild(template.content.cloneNode(true));
+        }
+
+        static get observedAttributes() {
+            return [
+                'theme-name', 
+                'theme-url', 
+                'app-name',
+                'app-url',
+                'background',
+                'color'
+            ]; 
+        }
+
+        attributeChangedCallback(name, oldValue, newValue) {
+            // Update the attribute internally
+            this[name] = newValue;
+            // Update the component
+            this.updateComponent();
+        }
+
+        /**
+        *   When component is first attached to the DOM,
+        *   get its defined attributes and listen for 
+        *   scrolling
+        */
+        connectedCallback() {
+            // Get all attributes
+            this['theme-name']      = this.getAttribute('theme-name');
+            this['theme-url']       = this.getAttribute('theme-url');
+            this['app-name']        = this.getAttribute('app-name');
+            this['app-url']         = this.getAttribute('app-url');
+            this['background']      = this.getAttribute('background');
+            this['color']           = this.getAttribute('color');
+
+            // Attach scroll listener
+            window.addEventListener('scroll', e => {
+                if (window.scrollY !== 0) {
+                    this.shadowRoot.getElementById('myuw-app-bar').classList.add('shadow');
+                } else {
+                    this.shadowRoot.getElementById('myuw-app-bar').classList.remove('shadow');
+                }
+            });
+
+            var titleHtml = this.buildTitleString();
+            this.updateComponent(titleHtml);
+        }
+
+        /**
+        *   Assemble the HTML to be used in the top bar <h1> tag based on
+        *   whether the requisite properties exist.
+        */
+        buildTitleString() {
+            var htmlString = '';
+
+            if (this['theme-name'] !== null) {
+                if (this['theme-url'] !== null) {
+                    htmlString += '<a href="' + this['theme-url'] + '" target="_self">'
+                        + this['theme-name'] + '</a>';
+                } else {
+                    htmlString += '<span>' + this['theme-name'] + '</span>';
+                }
+            }
+
+            if (this['app-name'] !== null) {
+                htmlString += '&nbsp;';
+                if (this['app-url'] !== null) {
+                    htmlString += '<a href="' + this['app-url'] + '" target="_self">'
+                        + this['app-name'] + '</a>';
+                } else {
+                    htmlString += '<span>' + this['app-name'] + '</span>';
+                }
+            }
+
+            return htmlString;
+        }
+
+        /**
+        *   Update the component to use its set attributes
+        */
+        updateComponent(titleHtml) {
+            // Set the background and text colors
+            this.shadowRoot.getElementById('myuw-app-bar').style.background = this['background'];
+            this.shadowRoot.getElementById('myuw-app-bar').style.color = this['color'];
+
+            this.shadowRoot.getElementById('myuw-app-bar__title').innerHTML = titleHtml;
+        }
+    }
+
+    window.customElements.define('myuw-app-bar', MyuwAppBar);
+
+    /*
+        Append required font CDNs to document <head>
+    */
+    const $_cdnContainer = document.createElement('template');
+    $_cdnContainer.setAttribute('style', 'display: none;');
+    $_cdnContainer.innerHTML = `
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    `
+    document.head.appendChild($_cdnContainer.content);
+</script>
