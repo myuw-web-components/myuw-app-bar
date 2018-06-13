@@ -1,0 +1,22 @@
+{
+  "name": "@myuw-web-components/myuw-app-bar",
+  "version": "1.0.0",
+  "description": "A material top app bar designed for use with other MyUW web components",
+  "main": "myuw-app-bar.html",
+  "scripts": {
+    "start": "superstatic --port 8080 --host 127.0.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/myuw-web-components/myuw-app-bar.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/myuw-web-components/myuw-app-bar/issues"
+  },
+  "homepage": "https://github.com/myuw-web-components/myuw-app-bar#readme",
+  "devDependencies": {
+    "superstatic": "^5.0.1"
+  }
+}
