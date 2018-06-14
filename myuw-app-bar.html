@@ -99,7 +99,7 @@
                 text-decoration: none;
                 cursor: pointer;
                 color: inherit;
-        }    
+        }
 
         #myuw-app-bar.loading-font #title,
         #myuw-app-bar.loading-icons .region {
@@ -161,17 +161,11 @@
         constructor() {
             super();
 
-            // Get script doc
-            MyuwAppBar.document = (document._currentScript || document.currentScript).ownerDocument;
-
             // Create a shadowroot for this element
             this.attachShadow({mode: 'open'});
 
-            // Get the template and extract the HTML content
-            const template = MyuwAppBar.document.getElementById('myuw-app-bar-template');
-
             // Append the custom HTML to the shadowroot
-            this.shadowRoot.appendChild(template.content.cloneNode(true));
+            this.shadowRoot.appendChild(this.constructor.template.content.cloneNode(true));
 
             // Register font face listeners
             this.font = new FontFaceObserver('Montserrat', {});
@@ -180,11 +174,11 @@
 
         static get observedAttributes() {
             return [
-                'theme-name', 
-                'theme-url', 
+                'theme-name',
+                'theme-url',
                 'app-name',
                 'app-url'
-            ]; 
+            ];
         }
 
         /**
@@ -199,7 +193,7 @@
 
         /**
         *   When component is first attached to the DOM,
-        *   get its defined attributes and listen for 
+        *   get its defined attributes and listen for
         *   scrolling
         */
         connectedCallback() {
@@ -280,7 +274,7 @@
         */
         updateComponent(property, value) {
             switch(property) {
-                case 'title':   
+                case 'title':
                     this.shadowRoot.getElementById('myuw-app-bar__title').innerHTML = value;
                     break;
                 case 'font':
@@ -289,11 +283,13 @@
                 case 'icons':
                     this.shadowRoot.getElementById('myuw-app-bar').classList.remove('loading-icons');
                     break;
-                default: 
+                default:
                     return true;
             }
         }
     }
+
+    MyuwAppBar.template = (document._currentScript || document.currentScript).ownerDocument.getElementById('myuw-app-bar-template');
 
     window.customElements.define('myuw-app-bar', MyuwAppBar);
 </script>
