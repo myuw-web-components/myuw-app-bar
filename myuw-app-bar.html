@@ -151,7 +151,7 @@
             this.attachShadow({mode: 'open'});
 
             // Append the custom HTML to the shadowroot
-            this.shadowRoot.appendChild(template.content.cloneNode(true));
+            this.shadowRoot.appendChild(this.constructor.template.content.cloneNode(true));
             
             // Set up font observer
             this.font = new FontFaceObserver('Montserrat', {});
