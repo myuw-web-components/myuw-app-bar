@@ -115,12 +115,13 @@
     MyUW App Bar web component javascript class defition
 -->
 <script>
-    const myywAppBarDoc = (document._currentScript || document.currentScript).ownerDocument;
-
     // Custom element class definition
     class MyuwAppBar extends HTMLElement {
         constructor() {
             super();
+
+            // Get script doc
+            MyuwAppBar.document = (document._currentScript || document.currentScript).ownerDocument;
 
             // Set default property values
             this['background'] = '#c5050c';
@@ -130,7 +131,7 @@
             this.attachShadow({mode: 'open'});
 
             // Get the template and extract the HTML content
-            const template = myywAppBarDoc.getElementById('myuw-app-bar-template');
+            const template = MyuwAppBar.document.getElementById('myuw-app-bar-template');
 
             // Append the custom HTML to the shadowroot
             this.shadowRoot.appendChild(template.content.cloneNode(true));
