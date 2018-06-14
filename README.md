@@ -28,20 +28,34 @@ Use the component's HTML tag wherever you want:
     theme-url=""
     app-name=""
     app-url=""
-    background=""
-    color=""
 >
 </myuw-app-bar>
 ```
 
-### Configurable properties
+### Configurable properties via attributes
 
 - **themeName (theme-name):** Sets the theme/portal name (defaults to "MyUW")
 - **themeUrl (theme-url):** Sets then URL to go to when user clicks the theme name
 - **appName (app-name):** Sets the app name (e.g. "Bucky Backup")
 - **appUrl (app-url):** Sets then URL to go to when user clicks the app name
-- **background:** Sets the top bar's background color
-- **color:** Sets the top bar's text color (defaults to white)
+
+### Styling the app bar
+
+MyUW app bar exposes custom CSS properties so users can change some of its styles.
+
+- **--myuw-app-bar-bg:** Cahnges the background color of the app bar (default is UW-Madison red)
+- **--myuw-app-bar-color:** Changes the text color of the app bar (default is white)
+
+#### How to use custom CSS properties
+
+Add the following selector to your CSS:
+
+```css
+myuw-app-bar {
+    --myuw-app-bar-bg: #fff;
+    --myuw-app-bar-color: #c5050c;
+}
+```
 
 ### Configuration / child components
 

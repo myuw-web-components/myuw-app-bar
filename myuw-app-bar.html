@@ -2,17 +2,25 @@
 <!--
     MyUW App Bar web component HTML template
 -->
-<template id="myuw-app-bar-template">
+<template id='myuw-app-bar-template'>
     <style>
-        div.myuw-app-bar {
+        :host {
+            display: block;
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            background: var(--myuw-app-bar-bg, #c5050c);
+            color: var(--myuw-app-bar-color, #fff);
+        }
+        :host([hidden]) {
+            display: none;
+        }
+        #myuw-app-bar {
             font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
             font-size: 14px;
             font-weight: 500;
             -webkit-font-smoothing: antialiased;
             background-color: inherit;
-            position: -webkit-sticky;
-            position: sticky;
-            top: 0;
             z-index: 80;
             width: 100%;
             height: 64px;
@@ -32,11 +40,11 @@
             transition: box-shadow 0.3s ease-in-out;
         }
 
-        div.myuw-app-bar.shadow {
+        #myuw-app-bar.shadow {
             box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12);
         }
 
-        div.myuw-app-bar .region {
+        #myuw-app-bar .region {
             box-sizing: border-box;
             display: -webkit-box;
             display: -webkit-flex;
@@ -55,58 +63,58 @@
             justify-content: flex-start;
         }
 
-        div.myuw-app-bar .region.region__navigation {
+        #region__navigation {
             margin-right: 16px;
         }
 
-        div.myuw-app-bar .region.region__profile {
+        #region__profile {
             margin-left: 6px;
         }
 
-        div.myuw-app-bar .region.region__notifications,
-        div.myuw-app-bar .region.region__help {
+        #region__notifications,
+        #region__help {
             margin: 0 6px;
         }
 
-        div.myuw-app-bar div.title {
+        #title {
             height: 100%;
             display: flex;
             flex: auto;
             align-items: center;
         }
 
-        div.myuw-app-bar div.title h1#myuw-app-bar__title {
+        #myuw-app-bar__title {
             font-size: 18px;
             font-weight: 500;
         }
 
-        div.myuw-app-bar div.title h1 a {
+        #myuw-app-bar__title a {
             text-decoration: none;
             color: inherit;
         }
 
-        div.myuw-app-bar div.title h1 a:hover,
-        div.myuw-app-bar div.title h1 a:visited,
-        div.myuw-app-bar div.title h1 > span:hover {
+        #myuw-app-bar__title a:hover,
+        #myuw-app-bar__title a:visited,
+        #myuw-app-bar__title > span:hover {
                 text-decoration: none;
                 cursor: pointer;
                 color: inherit;
         }    
     </style>
-    <div id="myuw-app-bar" class='myuw-app-bar'>
-        <div class='region region__navigation'>
+    <div id='myuw-app-bar' class='myuw-app-bar'>
+        <div class='region' id='region__navigation'>
             <slot name='myuw-navigation' />
         </div>
-        <div class="title">
-            <h1 id="myuw-app-bar__title"></h1>
+        <div id='title'>
+            <h1 id='myuw-app-bar__title'></h1>
         </div>
-        <div class='region region__help'>
+        <div class='region'  id='region__help'>
             <slot name='myuw-help' />
         </div>
-        <div class='region region__notifications'>
+        <div class='region' id='region__notifications'>
             <slot name='myuw-notifications' />
         </div>
-        <div class='region region__profile'>
+        <div class='region' id='region__profile'>
             <slot name='myuw-profile' />
         </div>
     </div>
@@ -123,10 +131,6 @@
             // Get script doc
             MyuwAppBar.document = (document._currentScript || document.currentScript).ownerDocument;
 
-            // Set default property values
-            this['background'] = '#c5050c';
-            this['color'] = '#fff';
-
             // Create a shadowroot for this element
             this.attachShadow({mode: 'open'});
 
@@ -142,9 +146,7 @@
                 'theme-name', 
                 'theme-url', 
                 'app-name',
-                'app-url',
-                'background',
-                'color'
+                'app-url'
             ]; 
         }
 
@@ -152,7 +154,6 @@
         *   Web component lifecycle hook to update changed properties
         */
         attributeChangedCallback(name, oldValue, newValue) {
-            console.log(oldValue + ' changed to ' + newValue);
             // Update the attribute internally
             this[name] = newValue;
             // Update the component
@@ -170,16 +171,6 @@
             this['theme-url']       = this.getAttribute('theme-url');
             this['app-name']        = this.getAttribute('app-name');
             this['app-url']         = this.getAttribute('app-url');
-            var background          = this.getAttribute('background');
-            var color               = this.getAttribute('color');
-
-            // Don't override defaults with unset values
-            if (background !== null) {
-                this['background'] = background;
-            }
-            if (color !== null) {
-                this['color'] = color;
-            }
 
             // Attach scroll listener
             window.addEventListener('scroll', e => {
@@ -192,6 +183,15 @@
 
             var titleHtml = this.buildTitleString();
             this.updateComponent(titleHtml);
+        }
+
+        /**
+        *   Clean up event listeners if element is removed from the DOM
+        */
+        disconnectedCallback() {
+            window.removeEventListener('scroll', e => {
+                this.shadowRoot.getElementById('myuw-app-bar').classList.remove('shadow');
+            });
         }
 
         /**
@@ -227,10 +227,6 @@
         *   Update the component to use its set attributes
         */
         updateComponent(titleHtml) {
-            // Set the background and text colors
-            this.shadowRoot.getElementById('myuw-app-bar').style.background = this['background'];
-            this.shadowRoot.getElementById('myuw-app-bar').style.color = this['color'];
-
             this.shadowRoot.getElementById('myuw-app-bar__title').innerHTML = titleHtml;
         }
     }
