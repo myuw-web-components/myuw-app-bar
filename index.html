@@ -7,6 +7,7 @@
             }
         </style>
         <link rel="import" href="./myuw-app-bar.html">
+        <link rel="import" href="https://unpkg.com/@myuw-web-components/myuw-profile@1.0.0/myuw-profile.html">
     </head>
     <body>
         <!-- Styles for demo purposes only -->
@@ -118,13 +119,7 @@
                         <i class="material-icons">notifications</i>
                     </button>
                   </span>
-                  <span slot="myuw-profile">
-                    <button class="demo__toolbar-button profile">
-                      <div class="demo__profile-letter">
-                        B
-                      </div>
-                    </button>
-                  </span>
+                  <myuw-profile slot="myuw-profile" session-endpoint="no-session.json"></myuw-profile>
         </myuw-app-bar>
         <div class="demo__container">
             <div class="demo__test-content">
