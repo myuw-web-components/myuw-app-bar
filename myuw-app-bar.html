@@ -104,6 +104,7 @@
         #myuw-app-bar.loading-font #title,
         #myuw-app-bar.loading-icons .region {
             color: transparent;
+            font-family: Arial, sans-serif;
         }
     </style>
     <div id='myuw-app-bar' class='myuw-app-bar loading-font loading-icons'>
@@ -225,10 +226,17 @@
             var titleHtml = this.buildTitleString();
             this.updateComponent('title', titleHtml);
 
-            this.icons.load().then(() => {
+            // Wait for fonts to load before displaying content
+            this.icons.load().then(res => {
+                this.updateComponent('icons');
+            }).catch(error => {
+                console.log(error);
                 this.updateComponent('icons');
             });
-            this.font.load().then(() => {
+            this.font.load().then(res => {
+                this.updateComponent('font');
+            }).catch(error => {
+                console.log(error);
                 this.updateComponent('font');
             });
         }
