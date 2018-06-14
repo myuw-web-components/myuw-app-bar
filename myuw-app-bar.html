@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<!--
+    MyUW App Bar web component HTML template
+-->
 <template id="myuw-app-bar-template">
     <style>
         div.myuw-app-bar {
@@ -108,13 +111,20 @@
         </div>
     </div>
 </template>
+<!--
+    MyUW App Bar web component javascript class defition
+-->
 <script>
+    const thisDoc = (document._currentScript || document.currentScript).ownerDocument;
+
+    // Custom element class definition
     class MyuwAppBar extends HTMLElement {
         constructor() {
             super();
-            
-            // Get the script document
-            const thisDoc = (document._currentScript || document.currentScript).ownerDocument;
+
+            // Set default property values
+            this['background'] = '#c5050c';
+            this['color'] = '#fff';
 
             // Create a shadowroot for this element
             this.attachShadow({mode: 'open'});
@@ -137,7 +147,11 @@
             ]; 
         }
 
+        /**
+        *   Web component lifecycle hook to update changed properties
+        */
         attributeChangedCallback(name, oldValue, newValue) {
+            console.log(oldValue + ' changed to ' + newValue);
             // Update the attribute internally
             this[name] = newValue;
             // Update the component
@@ -155,8 +169,16 @@
             this['theme-url']       = this.getAttribute('theme-url');
             this['app-name']        = this.getAttribute('app-name');
             this['app-url']         = this.getAttribute('app-url');
-            this['background']      = this.getAttribute('background');
-            this['color']           = this.getAttribute('color');
+            var background          = this.getAttribute('background');
+            var color               = this.getAttribute('color');
+
+            // Don't override defaults with unset values
+            if (background !== null) {
+                this['background'] = background;
+            }
+            if (color !== null) {
+                this['color'] = color;
+            }
 
             // Attach scroll listener
             window.addEventListener('scroll', e => {
@@ -215,7 +237,10 @@
     window.customElements.define('myuw-app-bar', MyuwAppBar);
 
     /*
-        Append required font CDNs to document <head>
+        Include required fonts in document <head>
+        TODO: Instead, check if these things are already available,
+              only include them if not. (Ideally we want them to be 
+              available faster)
     */
     const $_cdnContainer = document.createElement('template');
     $_cdnContainer.setAttribute('style', 'display: none;');
