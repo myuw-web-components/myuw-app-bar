@@ -54,6 +54,7 @@ Add the following selector to your CSS:
 myuw-app-bar {
     --myuw-app-bar-bg: #fff;
     --myuw-app-bar-color: #c5050c;
+    --myuw-app-bar-font: 'Roboto', sans-serif;
 }
 ```
 
