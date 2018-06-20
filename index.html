@@ -143,7 +143,13 @@
                         <button onclick="testUpdate(event, 'app-name',  newAppName.value)">Update</button>
                     </form>
                 </div>
-                <div class="demo__grid-box">Box 3</div>
+                <div class="demo__grid-box">
+                    <form name="testBackgroundChange">
+                        <label for="newBackground">Update background color:</label>
+                        <input name="newBackground" type="text" placeholder="rgb(33,150,243)"/>
+                        <button onclick="testAddCss(event, 'myuw-app-bar-bg',  newBackground.value)">Update</button>
+                    </form>
+                </div>
                 <div class="demo__grid-box">Box 4</div>
                 <div class="demo__grid-box">Box 5</div>
                 <div class="demo__grid-box">Box 6</div>
@@ -152,17 +158,33 @@
     </body>
     <script>
         /**
-        * Test update function to make sure component attributes are targetable
-        * and updatable from external JS
-        * @param e {*} The event object
-        * @param attribute {String} The name of the attribute to target
-        * @param newValue {String} The new value to set
+        *   Make sure component attributes are targetable
+        *   and updatable from external JS
+        *
+        *   @param e {*} The event object
+        *   @param attribute {String} The name of the attribute to target
+        *   @param newValue {String} The new value to set
         */
         function testUpdate(e, attribute, newValue) {
             e.preventDefault();
             // Get app bar
             var _appBar = document.getElementsByTagName('myuw-app-bar')[0];
             _appBar.setAttribute(attribute, newValue);
+        }
+
+        /**
+        *   Demonstrate how to update CSS properties programatically 
+        */
+        function testAddCss(e, property, value) {
+            e.preventDefault();
+            var _newCss = document.createElement('style');
+            _newCss.innerHTML = `
+                myuw-app-bar {
+                    --${property}: ${value};
+                    
+                }
+            `
+            document.head.appendChild(_newCss);
         }
     </script>
 </html>
