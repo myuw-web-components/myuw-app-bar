@@ -76,3 +76,11 @@ Use the named `<slot>` tags to include child components of the top-app-bar:
 - **myuw-profile**: Insert the `<myuw-profile>` component
 
 *Note: Child components are a WIP*
+
+#### CSS Variables
+
+- `--myuw-app-bar-bg`: Background color for the app bar
+- `--myuw-app-bar-font`: Font stack for the app bar
+- `--myuw-app-bar-color`: Font color for the app bar
+
+For more information about CSS variables and how they work with MyUW Web Components, [reference the styles component](https://github.com/myuw-web-components/myuw-app-styles "reference the styles component")
