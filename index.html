@@ -5,10 +5,6 @@
                 padding: 0;
                 margin: 0;
             }
-            /* This style is overridden by myuw-app-styles */
-            myuw-app-bar {
-                --myuw-app-bar-color: #000;
-            }
         </style>
         <link rel="import" href="./myuw-app-bar.html">
         <link rel="import" href="https://unpkg.com/@myuw-web-components/myuw-profile/myuw-profile.html">
@@ -91,7 +87,7 @@
                 align-content: flex-start
             }
             div.demo__test-content .demo__grid-box {
-                font-family: 'Roboto';
+                font-family: 'Arial';
                 height: 300px;
                 width: 300px;
                 box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12);
@@ -103,6 +99,11 @@
                 align-items: center; 
                 margin: 18px;
                 border-radius: 5px;
+            }
+            div.demo__test-content .demo__grid-box label {
+                font-size: 16px;
+                display: block;
+                flex: auto;
             }
         </style>
         <myuw-app-bar 
@@ -128,13 +129,62 @@
         </myuw-app-bar>
         <div class="demo__container">
             <div class="demo__test-content">
-                <div class="demo__grid-box">Box 1</div>
-                <div class="demo__grid-box">Box 2</div>
-                <div class="demo__grid-box">Box 3</div>
+                <div class="demo__grid-box">
+                    <form name="testPortalNameChange">
+                        <label for="newPortalName">Update portal name:</label>
+                        <input name="newPortalName" type="text" placeholder="New portal name"/>
+                        <button onclick="testUpdate(event, 'theme-name',  newPortalName.value)">Update</button>
+                    </form>
+                </div>
+                <div class="demo__grid-box">
+                    <form name="testAppNameChange">
+                        <label for="newAppName">Update app name:</label>
+                        <input name="newAppName" type="text" placeholder="New app name"/>
+                        <button onclick="testUpdate(event, 'app-name',  newAppName.value)">Update</button>
+                    </form>
+                </div>
+                <div class="demo__grid-box">
+                    <form name="testBackgroundChange">
+                        <label for="newBackground">Update background color:</label>
+                        <input name="newBackground" type="text" placeholder="rgb(33,150,243)"/>
+                        <button onclick="testAddCss(event, 'myuw-app-bar-bg',  newBackground.value)">Update</button>
+                    </form>
+                </div>
                 <div class="demo__grid-box">Box 4</div>
                 <div class="demo__grid-box">Box 5</div>
                 <div class="demo__grid-box">Box 6</div>
             </div>
         </div>
     </body>
+    <script>
+        /**
+        *   Make sure component attributes are targetable
+        *   and updatable from external JS
+        *
+        *   @param e {*} The event object
+        *   @param attribute {String} The name of the attribute to target
+        *   @param newValue {String} The new value to set
+        */
+        function testUpdate(e, attribute, newValue) {
+            e.preventDefault();
+            // Get app bar
+            var _appBar = document.getElementsByTagName('myuw-app-bar')[0];
+            _appBar.setAttribute(attribute, newValue);
+        }
+
+        /**
+        *   Demonstrate how to update CSS properties programatically 
+        */
+        function testAddCss(e, property, value) {
+            e.preventDefault();
+            var _newCss = document.createElement('style');
+            _newCss.innerHTML = `
+                myuw-app-bar {
+                    --${property}: ${value};
+                    
+                }
+            `
+            document.head.appendChild(_newCss);
+        }
+    </script>
 </html>

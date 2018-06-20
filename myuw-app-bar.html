@@ -157,7 +157,8 @@
             // Update the attribute internally
             this[name] = newValue;
             // Update the component
-            this.updateComponent();
+            this.updateComponent(name, newValue);
+            
         }
 
         /**
@@ -181,8 +182,7 @@
                 }
             });
 
-            var titleHtml = this.buildTitleString();
-            this.updateComponent('title', titleHtml);
+            this.updateComponent();
         }
 
         /**
@@ -219,7 +219,7 @@
                     htmlString += '<span>' + this['app-name'] + '</span>';
                 }
             }
-
+            
             return htmlString;
         }
 
@@ -227,14 +227,8 @@
         *   Update the component state depending on changed properties
         *   and/or font loading
         */
-        updateComponent(property, value) {
-            switch(property) {
-                case 'title':
-                    this.shadowRoot.getElementById('myuw-app-bar__title').innerHTML = value;
-                    break;
-                default:
-                    return true;
-            }
+        updateComponent() {
+            this.shadowRoot.getElementById('myuw-app-bar__title').innerHTML = this.buildTitleString();
         }
     }
 

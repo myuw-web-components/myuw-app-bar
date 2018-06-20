@@ -43,8 +43,11 @@ Use the component's HTML tag wherever you want:
 
 MyUW app bar exposes custom CSS properties so users can change some of its styles.
 
-- **--myuw-app-bar-bg:** Cahnges the background color of the app bar (default is UW-Madison red)
-- **--myuw-app-bar-color:** Changes the text color of the app bar (default is white)
+- `--myuw-app-bar-bg`: Background color for the app bar
+- `--myuw-app-bar-font`: Font stack for the app bar
+- `--myuw-app-bar-color`: Font color for the app bar
+
+For more information about CSS variables and how they work with MyUW Web Components, [reference the styles component](https://github.com/myuw-web-components/myuw-app-styles "reference the styles component")
 
 #### How to use custom CSS properties
 
@@ -76,11 +79,3 @@ Use the named `<slot>` tags to include child components of the top-app-bar:
 - **myuw-profile**: Insert the `<myuw-profile>` component
 
 *Note: Child components are a WIP*
-
-#### CSS Variables
-
-- `--myuw-app-bar-bg`: Background color for the app bar
-- `--myuw-app-bar-font`: Font stack for the app bar
-- `--myuw-app-bar-color`: Font color for the app bar
-
-For more information about CSS variables and how they work with MyUW Web Components, [reference the styles component](https://github.com/myuw-web-components/myuw-app-styles "reference the styles component")
