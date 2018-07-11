@@ -107,6 +107,7 @@
             }
         </style>
         <myuw-app-bar 
+            role="toolbar"
             theme-name="MyUW" 
             theme-url="https://my.wisc.edu" 
             app-name="Bucky Backup">
@@ -132,21 +133,21 @@
                 <div class="demo__grid-box">
                     <form name="testPortalNameChange">
                         <label for="newPortalName">Update portal name:</label>
-                        <input name="newPortalName" type="text" placeholder="New portal name"/>
+                        <input id="newPortalName" type="text" placeholder="New portal name"/>
                         <button onclick="testUpdate(event, 'theme-name',  newPortalName.value)">Update</button>
                     </form>
                 </div>
                 <div class="demo__grid-box">
                     <form name="testAppNameChange">
                         <label for="newAppName">Update app name:</label>
-                        <input name="newAppName" type="text" placeholder="New app name"/>
+                        <input id="newAppName" type="text" placeholder="New app name"/>
                         <button onclick="testUpdate(event, 'app-name',  newAppName.value)">Update</button>
                     </form>
                 </div>
                 <div class="demo__grid-box">
                     <form name="testBackgroundChange">
                         <label for="newBackground">Update background color:</label>
-                        <input name="newBackground" type="text" placeholder="rgb(33,150,243)"/>
+                        <input id="newBackground" type="text" placeholder="rgb(33,150,243)"/>
                         <button onclick="testAddCss(event, 'myuw-app-bar-bg',  newBackground.value)">Update</button>
                     </form>
                 </div>
@@ -155,6 +156,7 @@
                 <div class="demo__grid-box">Box 6</div>
             </div>
         </div>
+        <script src="./node_modules/tota11y/build/tota11y.min.js"></script>
     </body>
     <script>
         /**
