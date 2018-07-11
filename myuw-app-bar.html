@@ -182,8 +182,7 @@
                 }
             });
             
-            var myuwAppBarTitleHtml = this.buildTitleString();
-            this.updateComponent(myuwAppBarTitleHtml);
+            this.updateComponent();
         }
 
         /**
@@ -212,7 +211,7 @@
                     htmlString += '<span>' + this['theme-name'] + '</span>';
                 }
             }
-
+            
             if (this['app-name'] !== null) {
                 htmlString += '&nbsp;';
                 if (this['app-url'] !== null) {
@@ -230,10 +229,9 @@
         /**
         *   Update the component state depending on changed properties
         *   and/or font loading
-        *   @param {String} title A string for the HTML to add to the shadow DOM
         */
-        updateComponent(title) {
-            this.shadowRoot.getElementById('myuw-app-bar__title').innerHTML = title;
+        updateComponent() {
+            this.shadowRoot.getElementById('myuw-app-bar__title').innerHTML = this.buildTitleString();
         }
     }
 
