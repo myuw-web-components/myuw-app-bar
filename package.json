@@ -18,5 +18,8 @@
   "homepage": "https://github.com/myuw-web-components/myuw-app-bar#readme",
   "devDependencies": {
     "superstatic": "^5.0.1"
+  },
+  "dependencies": {
+    "tota11y": "^0.1.6"
   }
 }

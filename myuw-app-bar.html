@@ -181,8 +181,9 @@
                     this.shadowRoot.getElementById('myuw-app-bar').classList.remove('shadow');
                 }
             });
-
-            this.updateComponent();
+            
+            var myuwAppBarTitleHtml = this.buildTitleString();
+            this.updateComponent(myuwAppBarTitleHtml);
         }
 
         /**
@@ -197,13 +198,15 @@
         /**
         *   Assemble the HTML to be used in the top bar <h1> tag based on
         *   whether the requisite properties exist.
+        *   @return {String} htmlString A string for the HTML to add to the shadow DOM
         */
         buildTitleString() {
+            
             var htmlString = '';
 
             if (this['theme-name'] !== null) {
                 if (this['theme-url'] !== null) {
-                    htmlString += '<a href="' + this['theme-url'] + '" target="_self">'
+                    htmlString += '<a href="' + this['theme-url'] + '" target="_self" aria-label="' + this['theme-name'] + '">'
                         + this['theme-name'] + '</a>';
                 } else {
                     htmlString += '<span>' + this['theme-name'] + '</span>';
@@ -213,22 +216,24 @@
             if (this['app-name'] !== null) {
                 htmlString += '&nbsp;';
                 if (this['app-url'] !== null) {
-                    htmlString += '<a href="' + this['app-url'] + '" target="_self">'
+                    htmlString += '<a href="' + this['app-url'] + '" target="_self" aria-label="' + this['app-name'] + '">'
                         + this['app-name'] + '</a>';
                 } else {
-                    htmlString += '<span>' + this['app-name'] + '</span>';
+                    htmlString += '<span tabindex="0" aria-label="' + this['app-name'] + '">' + this['app-name'] + '</span>';
                 }
             }
             
             return htmlString;
+        
         }
 
         /**
         *   Update the component state depending on changed properties
         *   and/or font loading
+        *   @param {String} title A string for the HTML to add to the shadow DOM
         */
-        updateComponent() {
-            this.shadowRoot.getElementById('myuw-app-bar__title').innerHTML = this.buildTitleString();
+        updateComponent(title) {
+            this.shadowRoot.getElementById('myuw-app-bar__title').innerHTML = title;
         }
     }
 
