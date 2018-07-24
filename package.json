@@ -4,6 +4,7 @@
   "description": "A material top app bar designed for use with other MyUW web components",
   "main": "myuw-app-bar.html",
   "scripts": {
+    "build": "rollup -c",
     "start": "superstatic --port 8080 --host 127.0.0.1"
   },
   "repository": {
@@ -17,6 +18,9 @@
   },
   "homepage": "https://github.com/myuw-web-components/myuw-app-bar#readme",
   "devDependencies": {
+    "rollup": "^0.63.4",
+    "rollup-plugin-html": "^0.2.1",
+    "rollup-plugin-minify-es": "^1.1.1",
     "superstatic": "^5.0.1",
     "tota11y": "^0.1.6"
   }

@@ -6,7 +6,10 @@
                 margin: 0;
             }
         </style>
-        <link rel="import" href="./myuw-app-bar.html">
+
+        <script type="module" src="./dist/myuw-app-bar.mjs"></script>
+        <script nomodule scr="./dist/myuw-app-bar.js"></script>
+
         <link rel="import" href="https://unpkg.com/@myuw-web-components/myuw-profile/myuw-profile.html">
         <script src="https://unpkg.com/@myuw-web-components/myuw-app-styles/myuw-app-styles.js"></script>
     </head>
@@ -21,7 +24,7 @@
                 margin: 0;
                 display: flex;
                 position: relative;
-                cursor: pointer;          
+                cursor: pointer;
                 min-height: 36px;
                 line-height: 38px;
                 vertical-align: middle;
@@ -31,27 +34,27 @@
                 align-items: center;
                 justify-content: center;
                 border-radius: 3px;
-                box-sizing: border-box;          
+                box-sizing: border-box;
                 -webkit-user-select: none;
                 -moz-user-select: none;
                 -ms-user-select: none;
                 user-select: none;
-                border: 0;          
+                border: 0;
                 padding: 0 6px;
                 background: transparent;
                 color: inherit;
                 white-space: nowrap;
-                font-weight: 500;          
+                font-weight: 500;
                 font-size: 14px;
                 font-style: inherit;
                 font-variant: inherit;
                 font-family: inherit;
-                text-decoration: none;          
+                text-decoration: none;
                 overflow: hidden;
                 -webkit-transition: box-shadow .4s cubic-bezier(.25,.8,.25,1),background-color .4s cubic-bezier(.25,.8,.25,1);
                 transition: box-shadow .4s cubic-bezier(.25,.8,.25,1),background-color .4s cubic-bezier(.25,.8,.25,1);
                 height: 38px;
-                min-width: 38px;          
+                min-width: 38px;
                 border-radius: 50%;
             }
             button.demo__toolbar-button .material-icons {
@@ -60,7 +63,7 @@
             button.demo__toolbar-button.profile {
                 height: 42px;
                 min-width: 34px;
-                border-radius: 50%;          
+                border-radius: 50%;
             }
             button.demo__toolbar-button.profile .demo__profile-letter {
                 width: 30px;
@@ -96,7 +99,7 @@
                 font-size: 28px;
                 display: flex;
                 justify-content: center;
-                align-items: center; 
+                align-items: center;
                 margin: 18px;
                 border-radius: 5px;
             }
@@ -106,10 +109,10 @@
                 flex: auto;
             }
         </style>
-        <myuw-app-bar 
+        <myuw-app-bar
             role="toolbar"
-            theme-name="MyUW" 
-            theme-url="https://my.wisc.edu" 
+            theme-name="MyUW"
+            theme-url="https://my.wisc.edu"
             app-name="Bucky Backup">
             <span slot="myuw-navigation">
                     <button class="demo__toolbar-button menu">
@@ -175,7 +178,7 @@
         }
 
         /**
-        *   Demonstrate how to update CSS properties programatically 
+        *   Demonstrate how to update CSS properties programatically
         */
         function testAddCss(e, property, value) {
             e.preventDefault();
@@ -183,7 +186,7 @@
             _newCss.innerHTML = `
                 myuw-app-bar {
                     --${property}: ${value};
-                    
+
                 }
             `
             document.head.appendChild(_newCss);
