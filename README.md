@@ -8,6 +8,7 @@ To run the demo app locally and test the component, run the following commands:
 
 ```bash
 $ npm install
+$ npm run build
 $ npm start
 ```
 
@@ -16,7 +17,8 @@ $ npm start
 Add the following import to your page's `<head>`:
 
 ```html
-<link rel="import" href="https://unpkg.com/@myuw-web-components/myuw-app-bar@1.0.0/myuw-app-bar.html">
+<script type="module" src="/path/to/@myuw-web-components/myuw-app-bar/dist/myuw-app-bar.min.mjs"></script>
+<script nomodule scr="/path/to/@myuw-web-components/myuw-app-bar/dist/myuw-app-bar.min.js"></script>
 ```
 
 
