@@ -2,82 +2,73 @@ import { rollup } from 'rollup';
 import html from 'rollup-plugin-html';
 import minify from 'rollup-plugin-minify-es';
 
+let fileName = 'myuw-app-bar';
+let objName = 'MyUWAppBar';
+
+
+let plugins = {
+  full: [
+    html({
+      include: `src/${fileName}.html`,
+      htmlMinifierOptions: {
+        collapseWhitespace: true,
+        collapseBooleanAttributes: true,
+        conservativeCollapse: true
+      }
+    })
+  ],
+  min: [
+    html({
+      include: `src/${fileName}.html`,
+      htmlMinifierOptions: {
+        collapseWhitespace: true,
+        collapseBooleanAttributes: true,
+        conservativeCollapse: true
+      }
+    }),
+    minify({
+      output: {
+        wrap_iife: true
+      }
+    })
+  ]
+};
+
+
 export default [
   {
-    input: 'src/myuw-app-bar.js',
-    plugins: [
-      html({
-        include: 'src/myuw-app-bar.html',
-        htmlMinifierOptions: {
-          collapseWhitespace: true,
-          collapseBooleanAttributes: true,
-          conservativeCollapse: true
-        }
-      })
-    ],
+    input: `src/${fileName}.js`,
+    plugins: plugins.full,
     output: {
-      file: 'dist/myuw-app-bar.js',
-      name: 'MyuwAppBar',
+      file: `dist/${fileName}.js`,
+      name: objName,
       format: 'iife'
     }
   },
   {
-    input: 'src/myuw-app-bar.js',
-    plugins: [
-      html({
-        include: 'src/myuw-app-bar.html',
-        htmlMinifierOptions: {
-          collapseWhitespace: true,
-          collapseBooleanAttributes: true,
-          conservativeCollapse: true
-        }
-      }),
-      minify({
-        output: {
-          wrap_iife: true
-        }
-      })
-    ],
+    input: `src/${fileName}.js`,
+    plugins: plugins.min,
     output: {
-      file: 'dist/myuw-app-bar.min.js',
-      name: 'MyuwAppBar',
+      file: `dist/${fileName}.min.js`,
+      name: objName,
       format: 'iife'
     }
   },
   {
-    input: 'src/myuw-app-bar.js',
-    plugins: [
-      html({
-        include: 'src/myuw-app-bar.html',
-        htmlMinifierOptions: {
-          collapseWhitespace: true,
-          collapseBooleanAttributes: true,
-          conservativeCollapse: true
-        }
-      })
-    ],
+    input: `src/${fileName}.js`,
+    plugins: plugins.full,
     output: {
-      file: 'dist/myuw-app-bar.mjs',
-      name: 'MyuwAppBar',
+      file: `dist/${fileName}.mjs`,
+      name: objName,
       format: 'es'
     }
   },
   {
-    input: 'src/myuw-app-bar.js',
-    plugins: [
-      html({
-        include: 'src/myuw-app-bar.html',
-        htmlMinifierOptions: {
-          collapseWhitespace: true,
-          collapseBooleanAttributes: true,
-          conservativeCollapse: true
-        }
-      }),
-      minify()
-    ],
+    input: `src/${fileName}.js`,
+    plugins: plugins.min,
     output: {
-      file: 'dist/myuw-app-bar.min.mjs',
-      name: 'MyuwAppBar',
+      file: `dist/${fileName}.min.mjs`,
+      name: objName,
       format: 'es'
     }
   },

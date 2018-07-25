@@ -1,6 +1,6 @@
 import tpl from './myuw-app-bar.html';
 
-export class MyuwAppBar extends HTMLElement {
+export class MyUWAppBar extends HTMLElement {
     constructor() {
         super();
 
@@ -8,7 +8,7 @@ export class MyuwAppBar extends HTMLElement {
         this.attachShadow({mode: 'open'});
 
         // Append the custom HTML to the shadowroot
-        this.shadowRoot.appendChild(MyuwAppBar.template.content.cloneNode(true));
+        this.shadowRoot.appendChild(MyUWAppBar.template.content.cloneNode(true));
     }
 
     static get observedAttributes() {
@@ -105,10 +105,10 @@ export class MyuwAppBar extends HTMLElement {
     }
 }
 
-MyuwAppBar.template = (function template(src) {
+MyUWAppBar.template = (function template(src) {
   const template = (document.createElement('template'));
   template.innerHTML = src;
   return template;
 })(tpl);
 
-window.customElements.define('myuw-app-bar', MyuwAppBar);
+window.customElements.define('myuw-app-bar', MyUWAppBar);
