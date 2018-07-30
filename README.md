@@ -16,8 +16,8 @@ $ npm start
 Add the following import to your page's `<head>`:
 
 ```html
-<script type="module" src="https://unpkg.com/@myuw-web-components/myuw-app-bar?module"></script>
-<script nomodule scr="https://unpkg.com/@myuw-web-components/myuw-app-bar"></script>
+<script type="module" src="https://unpkg.com/@myuw-web-components/myuw-app-bar@^1?module"></script>
+<script nomodule scr="https://unpkg.com/@myuw-web-components/myuw-app-bar@^1"></script>
 ```
 
 Use the component's HTML tag wherever you want:
