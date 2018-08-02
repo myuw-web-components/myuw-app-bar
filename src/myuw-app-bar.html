@@ -69,6 +69,16 @@
         margin-right: 16px;
     }
 
+    #myuw-app-bar #region__search {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        flex: auto;
+        margin: 0 24px;
+        -webkit-justify-content: center;
+        justify-content: center;
+    }
+
     #region__profile {
         margin-left: 6px;
     }
@@ -81,7 +91,6 @@
     #title {
         height: 100%;
         display: flex;
-        flex: auto;
         align-items: center;
     }
 
@@ -109,6 +118,9 @@
     </div>
     <div id='title'>
         <h1 id='myuw-app-bar__title'></h1>
+    </div>
+    <div class='region'  id='region__search'>
+        <slot id='search-slot' name='myuw-search' />
     </div>
     <div class='region'  id='region__help'>
         <slot id='help-slot' name='myuw-help' />
