@@ -10,7 +10,7 @@
     "serve": "live-server",
     "start": "run-p watch serve",
     "prepare": "npm run build",
-    "pages": "rm -rf demo && mkdir -p demo && cp -r dist demo/ && cp index.html demo/ && gh-pages -d demo",
+    "pages": "rm -rf demo && mkdir -p demo && cp -r dist demo/ && cp index.html demo/ && gh-pages -d demo --repo git@github.com:myuw-web-components/myuw-app-bar.git",
     "postpublish": "npm run pages"
   },
   "repository": {
