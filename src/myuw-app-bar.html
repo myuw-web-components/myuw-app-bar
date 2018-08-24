@@ -1,23 +1,14 @@
 <style>
-    :host {
-        display: block;
+    :host([hidden]) {
+        display: none;
+    }
+
+    #myuw-app-bar {
         position: -webkit-sticky;
         position: sticky;
         top: 0;
         background: var(--myuw-app-bar-bg, var( --myuw-primary-bg, #c5050c));
         font-family: var(--myuw-app-bar-font, var( --myuw-font, Arial, sans-serif));
-        color: var(--myuw-app-bar-color, var(--myuw-primary-color, #fff));
-    }
-
-    :host([hidden]) {
-        display: none;
-    }
-
-    :host([font-loaded]) {
-        color: var(--myuw-app-bar-color, var(--myuw-primary-color, #fff));
-    }
-
-    #myuw-app-bar {
         font-size: 14px;
         font-weight: 500;
         -webkit-font-smoothing: antialiased;
@@ -65,11 +56,26 @@
         justify-content: flex-start;
     }
 
-    #region__navigation {
+    #region__left, 
+    #region__right {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1 1 30%;
+        flex: 1 1 30%;
+        box-sizing: border-box;
+        max-width: 30%;
+    }
+
+    #myuw-app-bar #region__right {
+        -webkit-box-pack: end;
+        -webkit-justify-content: flex-end;
+        justify-content: flex-end;
+    }
+
+    #slot__navigation {
         margin-right: 16px;
     }
 
-    #myuw-app-bar #region__search {
+    #myuw-app-bar #region__center {
         display: -webkit-box;
         display: -webkit-flex;
         display: flex;
@@ -79,12 +85,12 @@
         justify-content: center;
     }
 
-    #region__profile {
+    #slot__profile {
         margin-left: 6px;
     }
 
-    #region__notifications,
-    #region__help {
+    #slot__notifications,
+    #slot__help {
         margin: 0 6px;
     }
 
@@ -113,22 +119,26 @@
     }
 </style>
 <div id='myuw-app-bar' class='myuw-app-bar'>
-    <div class='region' id='region__navigation'>
-        <slot id='navigation-slot' name='myuw-navigation' />
+    <div class='region' id='region__left'>
+        <div class='slot' id='slot__navigation'>
+            <slot id='navigation-slot' name='myuw-navigation' />
+        </div>
+        <div id='title'>
+            <h1 id='myuw-app-bar__title'></h1>
+        </div>
     </div>
-    <div id='title'>
-        <h1 id='myuw-app-bar__title'></h1>
-    </div>
-    <div class='region'  id='region__search'>
+    <div class='region'  id='region__center'>
         <slot id='search-slot' name='myuw-search' />
     </div>
-    <div class='region'  id='region__help'>
-        <slot id='help-slot' name='myuw-help' />
-    </div>
-    <div class='region' id='region__notifications'>
-        <slot id='notifications-slot' name='myuw-notifications' />
-    </div>
-    <div class='region' id='region__profile'>
-        <slot id='profile-slot' name='myuw-profile' />
+    <div class='region' id='region__right'>
+        <div class='slot' id='slot__help'>
+            <slot id='help-slot' name='myuw-help' />
+        </div>
+        <div class='slot' id='slot__notifications'>
+            <slot id='notifications-slot' name='myuw-notifications' />
+        </div>
+        <div class='slot' id='slot__profile'>
+            <slot id='profile-slot' name='myuw-profile' />
+        </div>
     </div>
 </div>

@@ -7,12 +7,25 @@
             }
         </style>
 
+        <!-- Polyfill loader -->
+        <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.0.0/webcomponents-bundle.js"></script>
+
         <script type="module" src="./dist/myuw-app-bar.mjs"></script>
         <script nomodule src="./dist/myuw-app-bar.js"></script>
 
+        <!-- Drawer component -->
+        <script type="module" src="https://unpkg.com/@myuw-web-components/myuw-drawer@^1?module"></script>
+        <script nomodule src="https://unpkg.com/@myuw-web-components/myuw-drawer@^1"></script>
+
+        <!-- Profile component -->
         <script type="module" src="https://unpkg.com/@myuw-web-components/myuw-profile@^1?module"></script>
         <script nomodule src="https://unpkg.com/@myuw-web-components/myuw-profile@^1"></script>
 
+        <!-- Search component -->
+        <script type="module" src="https://unpkg.com/@myuw-web-components/myuw-search@^1?module"></script>
+        <script nomodule scr="https://unpkg.com/@myuw-web-components/myuw-search@^1"></script>
+
+        <!-- App styles component -->
         <script type="module" src="https://unpkg.com/@myuw-web-components/myuw-app-styles@^1?module"></script>
         <script nomodule src="https://unpkg.com/@myuw-web-components/myuw-app-styles@^1"></script>
     </head>
@@ -117,14 +130,12 @@
             theme-name="MyUW"
             theme-url="https://my.wisc.edu"
             app-name="Bucky Backup">
-            <span slot="myuw-navigation">
-                <button class="demo__toolbar-button menu">
-                    <i class="material-icons">menu</i>
-                </button>
-            </span>
-            <span slot="myuw-search">
-                SEARCH BAR HERE
-            </span>
+            <myuw-drawer slot="myuw-navigation"></myuw-drawer>
+            <myuw-search slot="myuw-search"
+                input-label="Search components"
+                button-label="Submit search"
+                icon="search">
+            </myuw-search>
             <span slot="myuw-help">
                 <button class="demo__toolbar-button help">
                     <i class="material-icons">help</i>
