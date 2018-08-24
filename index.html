@@ -7,8 +7,15 @@
             }
         </style>
 
+        <!-- Polyfill loader -->
+        <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.0.0/webcomponents-bundle.js"></script>
+
         <script type="module" src="./dist/myuw-app-bar.mjs"></script>
         <script nomodule src="./dist/myuw-app-bar.js"></script>
+
+        <!-- Drawer component -->
+        <script type="module" src="https://unpkg.com/@myuw-web-components/myuw-drawer@^1?module"></script>
+        <script nomodule src="https://unpkg.com/@myuw-web-components/myuw-drawer@^1"></script>
 
         <!-- Profile component -->
         <script type="module" src="https://unpkg.com/@myuw-web-components/myuw-profile@^1?module"></script>
@@ -117,20 +124,13 @@
                 display: block;
                 flex: auto;
             }
-            myuw-search {
-                /* max-width: 400px; */
-            }
         </style>
         <myuw-app-bar
             role="toolbar"
             theme-name="MyUW"
             theme-url="https://my.wisc.edu"
             app-name="Bucky Backup">
-            <span slot="myuw-navigation">
-                <button class="demo__toolbar-button menu">
-                    <i class="material-icons">menu</i>
-                </button>
-            </span>
+            <myuw-drawer slot="myuw-navigation"></myuw-drawer>
             <myuw-search slot="myuw-search"
                 input-label="Search components"
                 button-label="Submit search"

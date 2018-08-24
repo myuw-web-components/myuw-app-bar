@@ -1,23 +1,14 @@
 <style>
-    :host {
-        display: block;
+    :host([hidden]) {
+        display: none;
+    }
+
+    #myuw-app-bar {
         position: -webkit-sticky;
         position: sticky;
         top: 0;
         background: var(--myuw-app-bar-bg, var( --myuw-primary-bg, #c5050c));
         font-family: var(--myuw-app-bar-font, var( --myuw-font, Arial, sans-serif));
-        color: var(--myuw-app-bar-color, var(--myuw-primary-color, #fff));
-    }
-
-    :host([hidden]) {
-        display: none;
-    }
-
-    :host([font-loaded]) {
-        color: var(--myuw-app-bar-color, var(--myuw-primary-color, #fff));
-    }
-
-    #myuw-app-bar {
         font-size: 14px;
         font-weight: 500;
         -webkit-font-smoothing: antialiased;
