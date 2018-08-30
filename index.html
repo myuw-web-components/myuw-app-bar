@@ -1,5 +1,7 @@
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <style>
             body {
                 padding: 0;
@@ -131,11 +133,16 @@
             theme-url="https://my.wisc.edu"
             app-name="Bucky Backup">
             <myuw-drawer slot="myuw-navigation"></myuw-drawer>
-            <myuw-search slot="myuw-search"
+            <!-- <myuw-search slot="myuw-search"
                 input-label="Search components"
                 button-label="Submit search"
                 icon="search">
-            </myuw-search>
+            </myuw-search> -->
+            <span slot="myuw-search">
+                    <button class="demo__toolbar-button help">
+                        <i class="material-icons">search</i>
+                    </button>
+                </span>
             <span slot="myuw-help">
                 <button class="demo__toolbar-button help">
                     <i class="material-icons">help</i>

@@ -118,6 +118,25 @@
             cursor: pointer;
             color: inherit;
     }
+    @media (max-width: 600px) {
+        #myuw-app-bar {
+            padding-right: 0;
+        }
+        #myuw-app-bar #region__left {
+            flex: auto;
+            max-width: none;
+        }
+        #myuw-app-bar #region__center {
+            max-width: 42px;
+            margin: 0 6px;
+            justify-content: flex-end;
+        }
+        #myuw-app-bar #region__right {
+            flex: 0;
+            max-width: 50%;
+            justify-content: flex-end;
+        }
+    }
 </style>
 <div id='myuw-app-bar' class='myuw-app-bar'>
     <div class='region' id='region__left'>
