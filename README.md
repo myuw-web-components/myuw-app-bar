@@ -2,15 +2,6 @@
 
 A material top app bar designed for use with other MyUW web components
 
-## Development and contribution
-
-To run the demo app locally and test the component, run the following commands:
-
-```bash
-$ npm install
-$ npm start
-```
-
 ## Getting Started
 
 Add the following import to your page's `<head>`:
@@ -18,6 +9,12 @@ Add the following import to your page's `<head>`:
 ```html
 <script type="module" src="https://unpkg.com/@myuw-web-components/myuw-app-bar@^1?module"></script>
 <script nomodule scr="https://unpkg.com/@myuw-web-components/myuw-app-bar@^1"></script>
+```
+
+**Important**: For responsiveness to many screen sizes, ensure you have included the viewport meta tag in your application:
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1">
 ```
 
 Use the component's HTML tag wherever you want:
@@ -77,6 +74,13 @@ Use the named `<slot>` tags to include child components of the top-app-bar:
 - **myuw-help**: Insert the `<myuw-help-and-feedback>` component
 - **myuw-notifications**:  Insert the `<myuw-notifications>` component
 - **myuw-profile**: Insert the `<myuw-profile>` component
-- **myuw-search**: Insert a search bar (v1 of `<myuw-search>` component still in development)
+- **myuw-search**: Insert the `<myuw-search>` component
 
-*Note: Child components are a WIP*
+## Development and contribution
+
+To run the demo app locally and test the component, run the following commands:
+
+```bash
+$ npm install
+$ npm start
+```

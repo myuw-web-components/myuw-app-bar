@@ -1,13 +1,13 @@
 {
   "name": "@myuw-web-components/myuw-app-bar",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "A material top app bar designed for use with other MyUW web components",
   "module": "dist/myuw-app-bar.min.mjs",
   "browser": "dist/myuw-app-bar.min.js",
   "scripts": {
     "build": "rollup -c",
     "watch": "rollup -c -w",
-    "serve": "live-server",
+    "serve": "live-server --port=4200",
     "start": "run-p watch serve",
     "prepare": "npm run build",
     "pages": "rm -rf demo && mkdir -p demo && cp -r dist demo/ && cp index.html demo/ && gh-pages -d demo --repo git@github.com:myuw-web-components/myuw-app-bar.git",
