@@ -22,7 +22,6 @@ Use the component's HTML tag wherever you want:
 ```HTML
 <myuw-app-bar
     theme-name="MyUW"
-    theme-url=""
     app-name=""
     app-url=""
 >
@@ -32,9 +31,8 @@ Use the component's HTML tag wherever you want:
 ### Configurable properties via attributes
 
 - **themeName (theme-name):** Sets the theme/portal name (defaults to "MyUW")
-- **themeUrl (theme-url):** Sets then URL to go to when user clicks the theme name
 - **appName (app-name):** Sets the app name (e.g. "Bucky Backup")
-- **appUrl (app-url):** Sets then URL to go to when user clicks the app name
+- **appUrl (app-url):** Sets then URL to go to when user clicks the app title
 
 ### Styling the app bar
 
