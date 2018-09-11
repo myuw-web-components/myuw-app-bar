@@ -1,6 +1,6 @@
 {
   "name": "@myuw-web-components/myuw-app-bar",
-  "version": "1.4.2",
+  "version": "1.5.0",
   "description": "A material top app bar designed for use with other MyUW web components",
   "module": "dist/myuw-app-bar.min.mjs",
   "browser": "dist/myuw-app-bar.min.js",
