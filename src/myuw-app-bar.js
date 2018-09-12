@@ -60,6 +60,7 @@ export class MyUWAppBar extends HTMLElement {
         this['app-name']    = this.getAttribute('app-name') || 'Hello World';
         this['theme-name']  = this.getAttribute('theme-name');
 
+        // Set the title on initial load
         this.updateTitle();
 
         // Attach scroll listener

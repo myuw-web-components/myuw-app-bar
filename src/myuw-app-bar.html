@@ -71,8 +71,11 @@
         justify-content: flex-end;
     }
 
-    #slot__navigation {
-        margin-right: 16px;
+    #slot__navigation,
+    #slot__help,
+    #slot__notifications,
+    #slot__profile {
+        margin: 0;
     }
 
     #myuw-app-bar #region__center {
@@ -85,19 +88,11 @@
         justify-content: center;
     }
 
-    #slot__profile {
-        margin-left: 6px;
-    }
-
-    #slot__notifications,
-    #slot__help {
-        margin: 0 6px;
-    }
-
     #title {
         height: 100%;
         display: flex;
         align-items: center;
+        margin-left: 8px;
     }
 
     #myuw-app-bar__title {
@@ -118,16 +113,13 @@
             color: inherit;
     }
     @media (max-width: 600px) {
-        #myuw-app-bar {
-            padding-right: 0;
-        }
         #myuw-app-bar #region__left {
             flex: auto;
             max-width: none;
         }
         #myuw-app-bar #region__center {
             max-width: 42px;
-            margin: 0 6px;
+            margin: 0;
             justify-content: flex-end;
         }
         #myuw-app-bar #region__right {
