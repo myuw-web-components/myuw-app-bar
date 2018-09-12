@@ -130,8 +130,8 @@
         <myuw-app-bar
             role="toolbar"
             theme-name="MyUW"
-            theme-url="https://my.wisc.edu"
-            app-name="Bucky Backup">
+            app-name="Bucky Backup"
+            app-url="https://my.wisc.edu">
             <myuw-drawer slot="myuw-navigation"></myuw-drawer>
             <myuw-search slot="myuw-search"
                 input-label="Search components"
@@ -169,12 +169,18 @@
                 </div>
                 <div class="demo__grid-box">
                     <form name="testBackgroundChange">
+                        <label for="newUrl">Update title url:</label>
+                        <input id="newUrl" type="text" placeholder="www.google.com"/>
+                        <button onclick="testUpdate(event, 'app-url',  newUrl.value)">Update</button>
+                    </form>
+                </div>
+                <div class="demo__grid-box">
+                    <form name="testBackgroundChange">
                         <label for="newBackground">Update background color:</label>
                         <input id="newBackground" type="text" placeholder="rgb(33,150,243)"/>
                         <button onclick="testAddCss(event, 'myuw-app-bar-bg',  newBackground.value)">Update</button>
                     </form>
                 </div>
-                <div class="demo__grid-box">Box 4</div>
                 <div class="demo__grid-box">Box 5</div>
                 <div class="demo__grid-box">Box 6</div>
             </div>

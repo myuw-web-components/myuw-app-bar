@@ -1,6 +1,7 @@
 import tpl from './myuw-app-bar.html';
 
 export class MyUWAppBar extends HTMLElement {
+
     constructor() {
         super();
 
@@ -13,22 +14,39 @@ export class MyUWAppBar extends HTMLElement {
 
     static get observedAttributes() {
         return [
-            'theme-name',
-            'theme-url',
+            'app-url',
             'app-name',
-            'app-url'
+            'theme-name'
         ];
     }
 
     /**
-    *   Web component lifecycle hook to update changed properties
-    */
+     *  Web component lifecycle hook to update changed properties
+     *   - Called each time an attribute is changed, including on the initial load,
+     *     so will fire once for each attribute on first load
+     * @param {String} name The name of the attribute (e.g. "app-url")
+     * @param {String} oldValue The previous value of the attribute
+     * @param {String} newValue The new value for that attribute (e.g. "Time Reporting")
+     */
     attributeChangedCallback(name, oldValue, newValue) {
         // Update the attribute internally
+        
         this[name] = newValue;
-        // Update the component
-        this.updateComponent(name, newValue);
 
+        switch (name) {
+            case 'theme-name':
+                var container = this.shadowRoot.getElementById('themeText');
+                if (container) {
+                    container.innerText = newValue;
+                }
+            case 'app-name':
+                var container = this['app-text'];
+                if (container) {
+                    container.innerText = newValue;
+                }
+            case 'app-url':
+                this.updateTitle();
+        }
     }
 
     /**
@@ -37,11 +55,12 @@ export class MyUWAppBar extends HTMLElement {
     *   scrolling
     */
     connectedCallback() {
-        // Get all attributes
-        this['theme-name']      = this.getAttribute('theme-name');
-        this['theme-url']       = this.getAttribute('theme-url');
-        this['app-name']        = this.getAttribute('app-name');
-        this['app-url']         = this.getAttribute('app-url');
+        // Fall back on "theme-url" to support older implementations
+        this['app-url']     = this.getAttribute('app-url') || this.getAttribute('theme-url');
+        this['app-name']    = this.getAttribute('app-name') || 'Hello World';
+        this['theme-name']  = this.getAttribute('theme-name');
+
+        this.updateTitle();
 
         // Attach scroll listener
         window.addEventListener('scroll', e => {
@@ -51,8 +70,6 @@ export class MyUWAppBar extends HTMLElement {
                 this.shadowRoot.getElementById('myuw-app-bar').classList.remove('shadow');
             }
         });
-
-        this.updateComponent();
     }
 
     /**
@@ -65,43 +82,49 @@ export class MyUWAppBar extends HTMLElement {
     }
 
     /**
-    *   Assemble the HTML to be used in the top bar <h1> tag based on
-    *   whether the requisite properties exist.
-    *   @return {String} htmlString A string for the HTML to add to the shadow DOM
-    */
-    buildTitleString() {
-
-        var htmlString = '';
-
-        if (this['theme-name'] !== null) {
-            if (this['theme-url'] !== null) {
-                htmlString += '<a href="' + this['theme-url'] + '" target="_self" aria-label="' + this['theme-name'] + '">'
-                    + this['theme-name'] + '</a>';
-            } else {
-                htmlString += '<span>' + this['theme-name'] + '</span>';
-            }
+     * Remove existing child node and replace it with newly-built title HTML
+     */
+    updateTitle() {
+        var appBarTitle = this.shadowRoot.getElementById('myuw-app-bar__title');
+        if (appBarTitle.childNodes[0]) {
+            appBarTitle.replaceChild(this.buildTitle(), appBarTitle.childNodes[0]);    
+        } else {
+            appBarTitle.appendChild(this.buildTitle());
         }
-
-        if (this['app-name'] !== null) {
-            htmlString += '&nbsp;';
-            if (this['app-url'] !== null) {
-                htmlString += '<a href="' + this['app-url'] + '" target="_self" aria-label="' + this['app-name'] + '">'
-                    + this['app-name'] + '</a>';
-            } else {
-                htmlString += '<span tabindex="0" aria-label="' + this['app-name'] + '">' + this['app-name'] + '</span>';
-            }
-        }
-
-        return htmlString;
-
     }
 
     /**
-    *   Update the component state depending on changed properties
-    *   and/or font loading
+    *   Create the title HTML element based on
+    *   which properties exist.
+    *   @return {HTMLElement} title An HTML element to use within the app bar title slot
     */
-    updateComponent() {
-        this.shadowRoot.getElementById('myuw-app-bar__title').innerHTML = this.buildTitleString();
+    buildTitle() {
+        var title = HTMLElement;
+
+        // Create element for theme name text
+        var themeText = document.createElement('span');
+        themeText.setAttribute('id', 'themeText');
+        themeText.innerText = this['theme-name'] ? this['theme-name'] + ' ' : '';
+
+        // Create element for app name text
+        var appText = document.createElement('span');
+        appText.setAttribute('id', 'appText');
+        appText.innerText = this['app-name'] ? this['app-name'] : '';
+
+        // Create containing element depending on whether url is present
+        if (this['app-url'] && this['app-url'] !== null) {
+            title = document.createElement('a');
+            title.setAttribute('target', '_self');
+            title.setAttribute('href', this['app-url']);
+        } else {
+            title = document.createElement('div');
+            title.setAttribute('tabindex', '0');
+        }
+
+        title.appendChild(themeText);
+        title.appendChild(appText);
+
+        return title;
     }
 }
 
