@@ -10,7 +10,7 @@
         background: var(--myuw-app-bar-bg, var( --myuw-primary-bg, #c5050c));
         font-family: var(--myuw-app-bar-font, var( --myuw-font, Arial, sans-serif));
         font-size: 14px;
-        font-weight: 500;
+        font-weight: var(--myuw-app-bar-font-weight, 400);
         -webkit-font-smoothing: antialiased;
         background-color: var(--myuw-app-bar-bg, var( --myuw-primary-bg, #c5050c));
         color: var(--myuw-app-bar-color, var(--myuw-primary-color, #fff));
@@ -99,6 +99,10 @@
         font-size: 18px;
         font-weight: 500;
         margin: 0 auto;
+    }
+
+    #myuw-app-bar__title #themeText {
+        font-weight: var(--theme-name-font-weight, 600);
     }
 
     #myuw-app-bar__title a {
