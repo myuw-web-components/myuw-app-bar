@@ -148,7 +148,13 @@
                     <i class="material-icons">notifications</i>
                 </button>
             </span>
-            <myuw-profile slot="myuw-profile" session-endpoint="no-session.json"></myuw-profile>
+            <myuw-profile
+                slot="myuw-profile"
+                session-endpoint="./src/session.json"
+                login-url="login.wisc.edu"
+                logout-url="logout.wisc.edu">
+                <a href="#" slot="nav-item">Test link</a>
+            </myuw-profile>
         </myuw-app-bar>
 
         <div class="demo__container">
