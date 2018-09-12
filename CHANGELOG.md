@@ -1,5 +1,11 @@
 # myuw-app-bar versions
 
+## 1.5.1
+
+### Changed
+
+* Removed CSS margins on div elements that contains slots so they don't take up space when the slot has no content -- taking the position that margins are the responsibility of the slotted content.
+
 ## 1.5.0
 
 ### Changed
