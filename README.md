@@ -55,6 +55,7 @@ myuw-app-bar {
     --myuw-app-bar-font: 'Roboto', sans-serif;
     --myuw-app-bar-font-weight: 400;
     --theme-text-font-weight: 600;
+    --z-index: 56;
 }
 ```
 
