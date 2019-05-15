@@ -2,6 +2,12 @@
 
 ## 1.5
 
+### 1.5.5
+
+#### Added
+
+* Exposed a new css property to set the font size of the app bar title (`--myuw-app-bar-title-font-size`). Usage instructions are in the README. 
+
 ### 1.5.3
 
 #### Added
