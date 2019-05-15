@@ -53,6 +53,7 @@ myuw-app-bar {
     --myuw-app-bar-bg: #fff;
     --myuw-app-bar-color: #c5050c;
     --myuw-app-bar-font: 'Roboto', sans-serif;
+    --myuw-app-bar-title-font-size: 18px;
     --myuw-app-bar-font-weight: 400;
     --theme-text-font-weight: 600;
     --z-index: 56;
@@ -85,3 +86,7 @@ To run the demo app locally and test the component, run the following commands:
 $ npm install
 $ npm start
 ```
+
+
+Cross-browser testing provided by:<br/>
+<a href="https://www.browserstack.com/"><img width="160" src="https://myuw-web-components.github.io/img/Browserstack-logo.svg" alt="BrowserStack"/></a>
