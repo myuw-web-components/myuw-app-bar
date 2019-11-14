@@ -1,11 +1,9 @@
-import { rollup } from 'rollup';
 import html from 'rollup-plugin-html';
 import minify from 'rollup-plugin-minify-es';
 import babel from 'rollup-plugin-babel';
 
 let fileName = 'myuw-app-bar';
 let objName = 'MyUWAppBar';
-
 
 let plugins = {
   full: [
@@ -34,7 +32,6 @@ let plugins = {
     })
   ]
 };
-
 
 export default [
   {
