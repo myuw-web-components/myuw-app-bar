@@ -4,28 +4,29 @@ A material top app bar designed for use with other MyUW web components
 
 ## Getting Started
 
-Add the following import to your page's `<head>`:
+Include the component as follows:
 
 ```html
-<script type="module" src="https://unpkg.com/@myuw-web-components/myuw-app-bar@^1?module"></script>
-<script nomodule scr="https://unpkg.com/@myuw-web-components/myuw-app-bar@^1"></script>
+<!-- import the module -->
+<script type="module" src="https://cdn.my.wisc.edu/@myuw-web-components/myuw-app-bar@latest/myuw-app-bar.min.mjs"></script>
+
+<!-- fallback for browsers without ES2015 module support -->
+<script nomodule scr="https://cdn.my.wisc.edu/@myuw-web-components/myuw-app-bar@latest/myuw-app-bar.min.js"></script>
+
+<myuw-app-bar
+  theme-name="MyUW"
+  app-name=""
+  app-url=""
+>
+</myuw-app-bar>
 ```
+
+_Note:_ The evergreen "latest" version can be used for convenience, but in production settings it is recommended to use the latest [release version](https://github.com/myuw-web-components/myuw-profile/releases) specifically, and upgrade only after testing!
 
 **Important**: For responsiveness to many screen sizes, ensure you have included the viewport meta tag in your application:
 
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1">
-```
-
-Use the component's HTML tag wherever you want:
-
-```HTML
-<myuw-app-bar
-    theme-name="MyUW"
-    app-name=""
-    app-url=""
->
-</myuw-app-bar>
 ```
 
 ### Configurable properties via attributes
@@ -50,13 +51,13 @@ Add the following selector to your CSS:
 
 ```css
 myuw-app-bar {
-    --myuw-app-bar-bg: #fff;
-    --myuw-app-bar-color: #c5050c;
-    --myuw-app-bar-font: 'Roboto', sans-serif;
-    --myuw-app-bar-title-font-size: 18px;
-    --myuw-app-bar-font-weight: 400;
-    --theme-text-font-weight: 600;
-    --z-index: 56;
+  --myuw-app-bar-bg: #fff;
+  --myuw-app-bar-color: #c5050c;
+  --myuw-app-bar-font: 'Roboto', sans-serif;
+  --myuw-app-bar-title-font-size: 18px;
+  --myuw-app-bar-font-weight: 400;
+  --theme-text-font-weight: 600;
+  --z-index: 56;
 }
 ```
 
@@ -66,8 +67,8 @@ Use the named `<slot>` tags to include child components of the top-app-bar:
 
 ```html
 <myuw-app-bar>
-    <your-navigation-drawer-component slot="myuw-navigation"></your-navigation-drawer-component>
-    <your-notifications-component slot="myuw-notifications"></your-notifications-component>
+  <your-navigation-drawer-component slot="myuw-navigation"></your-navigation-drawer-component>
+  <your-notifications-component slot="myuw-notifications"></your-notifications-component>
 </myuw-app-bar>
 ```
 
@@ -86,7 +87,6 @@ To run the demo app locally and test the component, run the following commands:
 $ npm install
 $ npm start
 ```
-
 
 Cross-browser testing provided by:<br/>
 <a href="https://www.browserstack.com/"><img width="160" src="https://myuw-web-components.github.io/img/Browserstack-logo.svg" alt="BrowserStack"/></a>

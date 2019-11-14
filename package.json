@@ -1,6 +1,6 @@
 {
   "name": "@myuw-web-components/myuw-app-bar",
-  "version": "1.5.5",
+  "version": "1.6.0",
   "description": "A material top app bar designed for use with other MyUW web components",
   "module": "dist/myuw-app-bar.min.mjs",
   "browser": "dist/myuw-app-bar.min.js",
@@ -9,9 +9,8 @@
     "watch": "rollup -c -w",
     "serve": "live-server --port=4200",
     "start": "run-p watch serve",
-    "prepare": "npm run build",
-    "pages": "rm -rf demo && mkdir -p demo && cp -r dist demo/ && cp index.html demo/ && gh-pages -d demo --repo git@github.com:myuw-web-components/myuw-app-bar.git",
-    "postpublish": "npm run pages"
+    "sonar": "sonar-scanner",
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -24,16 +23,17 @@
   },
   "homepage": "https://github.com/myuw-web-components/myuw-app-bar#readme",
   "devDependencies": {
-    "@babel/core": "^7.1.2",
-    "@babel/preset-env": "^7.1.0",
-    "gh-pages": "^1.2.0",
-    "live-server": "^1.2.0",
-    "npm-run-all": "^4.1.3",
-    "rollup": "^0.63.4",
-    "rollup-plugin-babel": "^4.0.3",
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "aws-sdk": "^2.572.0",
+    "live-server": "^1.2.1",
+    "mime-types": "^2.1.25",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^1.27.0",
+    "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-html": "^0.2.1",
     "rollup-plugin-minify-es": "^1.1.1",
-    "tota11y": "^0.1.6"
+    "sonarqube-scanner": "^2.5.0"
   },
   "files": [
     "dist"
