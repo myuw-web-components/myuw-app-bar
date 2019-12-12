@@ -1,159 +1,161 @@
 <style>
-    :host([hidden]) {
-        display: none;
-    }
 
-    #myuw-app-bar {
-        position: -webkit-sticky;
-        position: sticky;
-        top: 0;
-        background: var(--myuw-app-bar-bg, var( --myuw-primary-bg, #c5050c));
-        font-family: var(--myuw-app-bar-font, var( --myuw-font, Arial, sans-serif));
-        font-size: 14px;
-        font-weight: var(--myuw-app-bar-font-weight, 400);
-        -webkit-font-smoothing: antialiased;
-        background-color: var(--myuw-app-bar-bg, var( --myuw-primary-bg, #c5050c));
-        color: var(--myuw-app-bar-color, var(--myuw-primary-color, #fff));
-        z-index: var(--z-index, 80);
-        width: 100%;
-        height: 64px;
-        box-sizing: border-box;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-box-align: center;
-        -webkit-align-items: center;
-        align-items: center;
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
-        -webkit-flex-direction: row;
-        flex-direction: row;
-        padding: 0 16px;
-        margin: 0;
-        transition: box-shadow 0.3s ease-in-out;
-    }
+  #spacer {
+    display: block;
+    height: 64px;
+  }
 
-    #myuw-app-bar.shadow {
-        box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12);
-    }
+  #bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 64px;
+    background: var(--myuw-app-bar-bg, var( --myuw-primary-bg, #c5050c));
+    font-family: var(--myuw-app-bar-font, var( --myuw-font, Arial, sans-serif));
+    font-size: 14px;
+    font-weight: var(--myuw-app-bar-font-weight, 400);
+    -webkit-font-smoothing: antialiased;
+    background-color: var(--myuw-app-bar-bg, var( --myuw-primary-bg, #c5050c));
+    color: var(--myuw-app-bar-color, var(--myuw-primary-color, #fff));
+    z-index: var(--z-index, 80);
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    padding: 0 16px;
+    transition: box-shadow 0.3s ease-in-out;
+  }
 
-    #myuw-app-bar .region {
-        box-sizing: border-box;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-box-orient: horizontal;
-        -webkit-flex-direction: row;
-        flex-direction: row;
-        -webkit-box-align: center;
-        -webkit-align-items: center;
-        -ms-grid-row-align: center;
-        align-items: center;
-        -webkit-align-content: center;
-        align-content: center;
-        -webkit-box-pack: start;
-        -webkit-justify-content: flex-start;
-        justify-content: flex-start;
-    }
+  #bar.shadow {
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12);
+  }
 
-    #region__left, 
-    #region__right {
-        -webkit-box-flex: 1;
-        -webkit-flex: 1 1 30%;
-        flex: 1 1 30%;
-        box-sizing: border-box;
-        max-width: 30%;
-    }
+  #bar .region {
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-grid-row-align: center;
+    align-items: center;
+    -webkit-align-content: center;
+    align-content: center;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+  }
 
-    #myuw-app-bar #region__right {
-        -webkit-box-pack: end;
-        -webkit-justify-content: flex-end;
-        justify-content: flex-end;
-    }
+  #region__left,
+  #region__right {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 30%;
+    flex: 1 1 30%;
+    box-sizing: border-box;
+    max-width: 30%;
+  }
 
-    #slot__navigation,
-    #slot__help,
-    #slot__notifications,
-    #slot__profile {
-        margin: 0;
-    }
+  #bar #region__right {
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+  }
 
+  #slot__navigation,
+  #slot__help,
+  #slot__notifications,
+  #slot__profile {
+    margin: 0;
+  }
+
+  #bar #region__center {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    flex: auto;
+    margin: 0 24px;
+    -webkit-justify-content: center;
+    justify-content: center;
+  }
+
+  #title {
+    font-size:  var(--myuw-app-bar-title-font-size, 18px);
+    font-weight: 500;
+  }
+
+  #title #themeText {
+    font-weight: var(--theme-name-font-weight, 600);
+  }
+
+  #title a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  #title a:hover,
+  #title a:visited, {
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit;
+  }
+
+  @media (max-width: 600px) {
+    #myuw-app-bar #region__left {
+      flex: auto;
+      max-width: none;
+    }
     #myuw-app-bar #region__center {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: flex;
-        flex: auto;
-        margin: 0 24px;
-        -webkit-justify-content: center;
-        justify-content: center;
+      max-width: 42px;
+      margin: 0;
+      justify-content: flex-end;
     }
+    #myuw-app-bar #region__right {
+      flex: 0;
+      max-width: 50%;
+      justify-content: flex-end;
+    }
+  }
 
-    #title {
-        height: 100%;
-        display: flex;
-        align-items: center;
-        margin-left: 8px;
-    }
-
-    #myuw-app-bar__title {
-        font-size:  var(--myuw-app-bar-title-font-size, 18px);
-        font-weight: 500;
-        margin: 0 auto;
-    }
-
-    #myuw-app-bar__title #themeText {
-        font-weight: var(--theme-name-font-weight, 600);
-    }
-
-    #myuw-app-bar__title a {
-        text-decoration: none;
-        color: inherit;
-    }
-
-    #myuw-app-bar__title a:hover,
-    #myuw-app-bar__title a:visited, {
-            text-decoration: none;
-            cursor: pointer;
-            color: inherit;
-    }
-    @media (max-width: 600px) {
-        #myuw-app-bar #region__left {
-            flex: auto;
-            max-width: none;
-        }
-        #myuw-app-bar #region__center {
-            max-width: 42px;
-            margin: 0;
-            justify-content: flex-end;
-        }
-        #myuw-app-bar #region__right {
-            flex: 0;
-            max-width: 50%;
-            justify-content: flex-end;
-        }
-    }
 </style>
-<div id='myuw-app-bar' class='myuw-app-bar'>
-    <div class='region' id='region__left'>
-        <div class='slot' id='slot__navigation'>
-            <slot id='navigation-slot' name='myuw-navigation' />
-        </div>
-        <div id='title'>
-            <h1 id='myuw-app-bar__title'></h1>
-        </div>
+
+<div id='bar'>
+
+  <div class='region' id='region__left'>
+    <div class='slot' id='slot__navigation'>
+      <slot id='navigation-slot' name='myuw-navigation' />
     </div>
-    <div class='region'  id='region__center'>
-        <slot id='search-slot' name='myuw-search' />
+    <h1 id='title'>
+      <a id='app-anchor' href='#' target='_self'><span id='themeText'></span> <span id='appText'></span></a>
+    </h1>
+  </div>
+
+  <div class='region'  id='region__center'>
+    <slot id='search-slot' name='myuw-search' />
+  </div>
+
+  <div class='region' id='region__right'>
+    <div class='slot' id='slot__help'>
+      <slot id='help-slot' name='myuw-help' />
     </div>
-    <div class='region' id='region__right'>
-        <div class='slot' id='slot__help'>
-            <slot id='help-slot' name='myuw-help' />
-        </div>
-        <div class='slot' id='slot__notifications'>
-            <slot id='notifications-slot' name='myuw-notifications' />
-        </div>
-        <div class='slot' id='slot__profile'>
-            <slot id='profile-slot' name='myuw-profile' />
-        </div>
+    <div class='slot' id='slot__notifications'>
+      <slot id='notifications-slot' name='myuw-notifications' />
     </div>
+    <div class='slot' id='slot__profile'>
+      <slot id='profile-slot' name='myuw-profile' />
+    </div>
+  </div>
+
 </div>
+
+<div id="spacer"></div>
