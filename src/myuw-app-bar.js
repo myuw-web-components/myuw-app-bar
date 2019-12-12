@@ -1,138 +1,72 @@
 import tpl from './myuw-app-bar.html';
 
-export class MyUWAppBar extends HTMLElement {
+export default class MyUWAppBar extends HTMLElement {
 
-    constructor() {
-        super();
+  static get elementName() {
+    return 'myuw-app-bar';
+  }
 
-        // Create a shadowroot for this element
-        this.attachShadow({mode: 'open'});
+  static get observedAttributes() {
+    return [
+      'app-url',
+      'app-name',
+      'theme-name'
+    ];
+  }
 
-        // Append the custom HTML to the shadowroot
-        this.shadowRoot.appendChild(MyUWAppBar.template.content.cloneNode(true));
+  static get template() {
+    if (this._template === undefined) {
+      this._template = document.createElement('template');
+      this._template.innerHTML = tpl;
     }
+    return this._template;
+  }
 
-    static get observedAttributes() {
-        return [
-            'app-url',
-            'app-name',
-            'theme-name'
-        ];
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(this.constructor.template.content.cloneNode(true));
+    this.appAnchorElement = this.shadowRoot.getElementById('app-anchor');
+    this.appBarElement = this.shadowRoot.getElementById('bar');
+    this.appTextElement = this.shadowRoot.getElementById('appText');
+    this.themeTextElement = this.shadowRoot.getElementById('themeText');
+    this.eventListeners = [
+      { target: window, type: 'scroll', handler: event => this.handleWindowScroll(event) }
+    ];
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    switch (name) {
+      case 'theme-name':
+        this.themeTextElement.textContent = newValue;
+        break;
+      case 'app-name':
+        this.appTextElement.textContent = newValue;
+        break;
+      case 'app-url':
+        this.appAnchorElement.href = newValue;
+        break;
     }
+  }
 
-    /**
-     *  Web component lifecycle hook to update changed properties
-     *   - Called each time an attribute is changed, including on the initial load,
-     *     so will fire once for each attribute on first load
-     * @param {String} name The name of the attribute (e.g. "app-url")
-     * @param {String} oldValue The previous value of the attribute
-     * @param {String} newValue The new value for that attribute (e.g. "Time Reporting")
-     */
-    attributeChangedCallback(name, oldValue, newValue) {
-        // Update the attribute internally
-        
-        this[name] = newValue;
+  connectedCallback(){
+    this.eventListeners.forEach( ({target, type, handler}) => target.addEventListener(type, handler));
+  }
 
-        switch (name) {
-            case 'theme-name':
-                var container = this.shadowRoot.getElementById('themeText');
-                if (container) {
-                    container.innerText = newValue;
-                }
-            case 'app-name':
-                var container = this['app-text'];
-                if (container) {
-                    container.innerText = newValue;
-                }
-            case 'app-url':
-                this.updateTitle();
-        }
+  disconnectedCallback(){
+    this.eventListeners.forEach( ({target, type, handler}) => target.removeEventListener(type, handler));
+  }
+
+  handleWindowScroll(event) {
+    if (window.scrollY !== 0) {
+      this.appBarElement.classList.add('shadow');
+    } else {
+      this.appBarElement.classList.remove('shadow');
     }
+  }
 
-    /**
-    *   When component is first attached to the DOM,
-    *   get its defined attributes and listen for
-    *   scrolling
-    */
-    connectedCallback() {
-        // Fall back on "theme-url" to support older implementations
-        this['app-url']     = this.getAttribute('app-url') || this.getAttribute('theme-url');
-        this['app-name']    = this.getAttribute('app-name') || 'Hello World';
-        this['theme-name']  = this.getAttribute('theme-name');
-
-        // Set the title on initial load
-        this.updateTitle();
-
-        // Attach scroll listener
-        window.addEventListener('scroll', e => {
-            if (window.scrollY !== 0) {
-                this.shadowRoot.getElementById('myuw-app-bar').classList.add('shadow');
-            } else {
-                this.shadowRoot.getElementById('myuw-app-bar').classList.remove('shadow');
-            }
-        });
-    }
-
-    /**
-    *   Clean up event listeners if element is removed from the DOM
-    */
-    disconnectedCallback() {
-        window.removeEventListener('scroll', e => {
-            this.shadowRoot.getElementById('myuw-app-bar').classList.remove('shadow');
-        });
-    }
-
-    /**
-     * Remove existing child node and replace it with newly-built title HTML
-     */
-    updateTitle() {
-        var appBarTitle = this.shadowRoot.getElementById('myuw-app-bar__title');
-        if (appBarTitle.childNodes[0]) {
-            appBarTitle.replaceChild(this.buildTitle(), appBarTitle.childNodes[0]);    
-        } else {
-            appBarTitle.appendChild(this.buildTitle());
-        }
-    }
-
-    /**
-    *   Create the title HTML element based on
-    *   which properties exist.
-    *   @return {HTMLElement} title An HTML element to use within the app bar title slot
-    */
-    buildTitle() {
-        var title = HTMLElement;
-
-        // Create element for theme name text
-        var themeText = document.createElement('span');
-        themeText.setAttribute('id', 'themeText');
-        themeText.innerText = this['theme-name'] ? this['theme-name'] + ' ' : '';
-
-        // Create element for app name text
-        var appText = document.createElement('span');
-        appText.setAttribute('id', 'appText');
-        appText.innerText = this['app-name'] ? this['app-name'] : '';
-
-        // Create containing element depending on whether url is present
-        if (this['app-url'] && this['app-url'] !== null) {
-            title = document.createElement('a');
-            title.setAttribute('target', '_self');
-            title.setAttribute('href', this['app-url']);
-        } else {
-            title = document.createElement('div');
-            title.setAttribute('tabindex', '0');
-        }
-
-        title.appendChild(themeText);
-        title.appendChild(appText);
-
-        return title;
-    }
 }
 
-MyUWAppBar.template = (function template(src) {
-  const template = (document.createElement('template'));
-  template.innerHTML = src;
-  return template;
-})(tpl);
-
-window.customElements.define('myuw-app-bar', MyUWAppBar);
+if (customElements.get(MyUWAppBar.elementName) === undefined) {
+  customElements.define(MyUWAppBar.elementName, MyUWAppBar);
+}

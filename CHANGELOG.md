@@ -1,5 +1,15 @@
 # myuw-app-bar versions
 
+## 1.7.0
+
+### Changed
+
+ * Position at top of viewport and fill width
+ * Remove CSS from sample page to better show the component itself
+ * Add more demo controls for CSS variables
+ * Add filler text to demo page, to demo scrolling behavior
+ * Clean up, modernize, simplify, and generally restructure everything
+
 ## 1.6.0
 
 ### Added
