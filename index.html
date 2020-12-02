@@ -13,6 +13,7 @@
   import "https://unpkg.com/@myuw-web-components/myuw-notifications/dist/myuw-notifications.min.mjs";
   import "https://unpkg.com/@myuw-web-components/myuw-profile/dist/myuw-profile.min.mjs";
   import "https://unpkg.com/@myuw-web-components/myuw-search/dist/myuw-search.min.mjs";
+  import "https://unpkg.com/@myuw-web-components/myuw-help/dist/myuw-help.min.mjs";
 
   import "./dist/myuw-app-bar.mjs";
 
@@ -56,6 +57,13 @@
       icon="search"
     ></myuw-search>
     <myuw-notifications slot="myuw-notifications"></myuw-notifications>
+    <myuw-help slot="myuw-help"
+      myuw-help-title="Get help"
+      show-button >
+      <div class="some-class" slot="myuw-help-content">
+        Help content would go here.
+      </div>
+    </myuw-help>
     <myuw-profile slot="myuw-profile" login-url="login.wisc.edu"></myuw-profile>
   </myuw-app-bar>
 </header>
