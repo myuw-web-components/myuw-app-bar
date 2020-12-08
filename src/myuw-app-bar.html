@@ -74,6 +74,7 @@
 
   #slot__navigation,
   #slot__help,
+  #slot__feedback,
   #slot__notifications,
   #slot__profile {
     margin: 0;
@@ -145,6 +146,9 @@
   </div>
 
   <div class='region' id='region__right'>
+    <div class='slot' id='slot__feedback'>
+      <slot id='feedback-slot' name='myuw-feedback' />
+    </div>
     <div class='slot' id='slot__help'>
       <slot id='help-slot' name='myuw-help' />
     </div>

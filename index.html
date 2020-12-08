@@ -14,6 +14,7 @@
   import "https://unpkg.com/@myuw-web-components/myuw-profile/dist/myuw-profile.min.mjs";
   import "https://unpkg.com/@myuw-web-components/myuw-search/dist/myuw-search.min.mjs";
   import "https://unpkg.com/@myuw-web-components/myuw-help/dist/myuw-help.min.mjs";
+  import "https://unpkg.com/@myuw-web-components/myuw-feedback/dist/myuw-feedback.min.mjs";
 
   import "./dist/myuw-app-bar.mjs";
 
@@ -57,6 +58,15 @@
       icon="search"
     ></myuw-search>
     <myuw-notifications slot="myuw-notifications"></myuw-notifications>
+    <myuw-feedback myuw-feedback-title="Feedback" slot="myuw-feedback" show-button>
+      <div slot="myuw-feedback-content">
+        <p>Please tell us what you think about the new all-in-one, integrated home for MyUW widgets.</p>
+        <div id="dialog-actions">
+          <a class="dialog-action" target="_blank" rel="noopener noreferrer" href="#">
+            Give Feedback</a>
+        </div>
+      </div>
+    </myuw-feedback>
     <myuw-help slot="myuw-help"
       myuw-help-title="Get help"
       show-button >

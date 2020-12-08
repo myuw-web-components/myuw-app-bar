@@ -1,5 +1,11 @@
 # myuw-app-bar versions
 
+## 1.7.1
+
+### Added
+
+ * Include MyUW Feedback Web Component in the App Bar
+
 ## 1.7.0
 
 ### Changed
