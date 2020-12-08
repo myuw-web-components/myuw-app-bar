@@ -74,7 +74,8 @@ Use the named `<slot>` tags to include child components of the top-app-bar:
 
 **Available slots:**
 - **myuw-navigation**: Insert the `<myuw-navigation-drawer>` component
-- **myuw-help**: Insert the `<myuw-help-and-feedback>` component
+- **myuw-feedback**: Insert the `<myuw-feedback>` component
+- **myuw-help**: Insert the `<myuw-help>` component
 - **myuw-notifications**:  Insert the `<myuw-notifications>` component
 - **myuw-profile**: Insert the `<myuw-profile>` component
 - **myuw-search**: Insert the `<myuw-search>` component
