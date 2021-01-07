@@ -112,7 +112,8 @@
   }
 
   @media (max-width: 600px) {
-    #myuw-app-bar #region__left {
+    #myuw-app-bar #region__left,
+    #bar #region__left {
       flex: auto;
       max-width: none;
     }
@@ -121,10 +122,14 @@
       margin: 0;
       justify-content: flex-end;
     }
-    #myuw-app-bar #region__right {
+    #myuw-app-bar #region__right,
+    #bar #region__right {
       flex: 0;
       max-width: 50%;
       justify-content: flex-end;
+    }
+    #bar #region__center {
+      margin: 0;
     }
   }
 
