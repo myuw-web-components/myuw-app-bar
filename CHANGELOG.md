@@ -1,5 +1,11 @@
 # myuw-app-bar versions
 
+## 1.7.2
+
+### Changed
+
+ * Make adjustments to the display of the regions on mobile views
+
 ## 1.7.1
 
 ### Added

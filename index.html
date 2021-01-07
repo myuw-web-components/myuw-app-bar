@@ -43,6 +43,14 @@
 
 </script>
 
+<style>
+  @media (max-width: 700px) {
+    .c-myuw-feedback {
+      display: none;
+    }
+  }
+</style>
+
 <header>
   <myuw-app-bar
     role="toolbar"
@@ -58,7 +66,7 @@
       icon="search"
     ></myuw-search>
     <myuw-notifications slot="myuw-notifications"></myuw-notifications>
-    <myuw-feedback myuw-feedback-title="Feedback" slot="myuw-feedback" show-button>
+    <myuw-feedback class="c-myuw-feedback" myuw-feedback-title="Feedback" slot="myuw-feedback" show-button>
       <div slot="myuw-feedback-content">
         <p>Please tell us what you think about the new all-in-one, integrated home for MyUW widgets.</p>
         <div id="dialog-actions">
