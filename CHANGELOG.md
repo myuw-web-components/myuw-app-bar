@@ -1,5 +1,11 @@
 # myuw-app-bar versions
 
+## 1.7.3
+
+### Changed
+
+* Remove references to Roboto and Arial fonts and replaced with Red Hat Display and Red Hat Text
+
 ## 1.7.2
 
 ### Changed
