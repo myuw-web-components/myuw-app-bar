@@ -1,5 +1,9 @@
 # myuw-app-bar versions
 
+## 1.7.4
+
+* Update font-weight of page title
+
 ## 1.7.3
 
 ### Changed
