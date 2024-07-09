@@ -2,13 +2,12 @@
 
   #spacer {
     display: block;
-    height: 64px;
+    height: 81px;
   }
 
   #bar {
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: relative;
+    top: 1.8em;
     width: 100vw;
     height: 64px;
     background: var(--myuw-app-bar-bg, var( --myuw-primary-bg, #c5050c));
@@ -105,7 +104,7 @@
   }
 
   #title a:hover,
-  #title a:visited, {
+  #title a:visited {
     text-decoration: none;
     cursor: pointer;
     color: inherit;
@@ -133,38 +132,72 @@
     }
   }
 
+.fixed-header-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.uw-global-bar {
+  padding: 0.4rem 1rem 0.1rem 1rem;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  font-family: Red Hat Text, sans-serif;
+}
+
+.uw-global-bar a {
+  color: #333;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.uw-global-bar a:hover {
+  text-decoration: none;
+}
 </style>
 
-<div id='bar'>
-
-  <div class='region' id='region__left'>
-    <div class='slot' id='slot__navigation'>
-      <slot id='navigation-slot' name='myuw-navigation' />
-    </div>
-    <h1 id='title'>
-      <a id='app-anchor' href='#' target='_self'><span id='themeText'></span> <span id='appText'></span></a>
-    </h1>
+<div class="fixed-header-container">
+  <!-- Utility bar -->
+  <div class="uw-global-bar" role="navigation">
+    <a
+      target="_blank" class="uw-global-name-link"
+      href="https://www.wisc.edu"
+      aria-label="University of Wisconsin–Madison home page">
+      University of Wisconsin–Madison</a>
   </div>
 
-  <div class='region'  id='region__center'>
-    <slot id='search-slot' name='myuw-search' />
-  </div>
+  <div id='bar'>
+    <div class='region' id='region__left'>
+      <div class='slot' id='slot__navigation'>
+        <slot id='navigation-slot' name='myuw-navigation' />
+      </div>
+      <h1 id='title'>
+        <a id='app-anchor' href='#' target='_self'><span id='themeText'></span> <span id='appText'></span></a>
+      </h1>
+    </div>
 
-  <div class='region' id='region__right'>
-    <div class='slot' id='slot__feedback'>
-      <slot id='feedback-slot' name='myuw-feedback' />
+    <div class='region'  id='region__center'>
+      <slot id='search-slot' name='myuw-search' />
     </div>
-    <div class='slot' id='slot__help'>
-      <slot id='help-slot' name='myuw-help' />
-    </div>
-    <div class='slot' id='slot__notifications'>
-      <slot id='notifications-slot' name='myuw-notifications' />
-    </div>
-    <div class='slot' id='slot__profile'>
-      <slot id='profile-slot' name='myuw-profile' />
+
+    <div class='region' id='region__right'>
+      <div class='slot' id='slot__feedback'>
+        <slot id='feedback-slot' name='myuw-feedback' />
+      </div>
+      <div class='slot' id='slot__help'>
+        <slot id='help-slot' name='myuw-help' />
+      </div>
+      <div class='slot' id='slot__notifications'>
+        <slot id='notifications-slot' name='myuw-notifications' />
+      </div>
+      <div class='slot' id='slot__profile'>
+        <slot id='profile-slot' name='myuw-profile' />
+      </div>
     </div>
   </div>
-
 </div>
 
 <div id="spacer"></div>
