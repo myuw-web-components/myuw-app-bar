@@ -1,5 +1,9 @@
 # myuw-app-bar versions
 
+## 1.7.6
+
+* Adjust spacing to accommodate new top banner
+
 ## 1.7.5
 
 * Implement top banner portion
