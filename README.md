@@ -1,4 +1,5 @@
 # `<myuw-app-bar>`
+**`myuw-app-bar` is not currently maintained.**
 
 A material top app bar designed for use with other MyUW web components
 
